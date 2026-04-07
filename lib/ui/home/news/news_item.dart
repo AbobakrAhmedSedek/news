@@ -38,7 +38,7 @@ class NewsItem extends StatelessWidget {
                   placeholder: (context, url) => CircularProgressIndicator(
                     color: Theme.of(context).indicatorColor,
                   ),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
               ),
               Padding(

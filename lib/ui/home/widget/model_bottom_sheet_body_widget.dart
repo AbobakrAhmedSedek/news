@@ -60,7 +60,7 @@ class ModelBottomSheetBodyWidget extends StatelessWidget {
                             mode: LaunchMode.inAppWebView,
                           );
                         },
-                        child: Text(
+                        child: Text(        
                           "View Full Article",
                           style: Theme.of(context).textTheme.labelLarge,
                         )),

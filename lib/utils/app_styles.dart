@@ -43,18 +43,22 @@ static TextStyle large24black = GoogleFonts.inter(
     fontWeight: FontWeight.bold,
     color: AppColors.whiteColor,
   );
-
+ 
+ 
   static TextStyle medium14White = GoogleFonts.inter(
     fontSize: 14,
     fontWeight: FontWeight.w500,
     color: AppColors.whiteColor,
   );
 
-  static TextStyle medium14Black = GoogleFonts.inter(
+  
+
+  static TextStyle medium14black = GoogleFonts.inter(
     fontSize: 14,
     fontWeight: FontWeight.w500,
     color: AppColors.blackColor,
   );
+
 
   static TextStyle medium24White = GoogleFonts.inter(
     fontSize: 24,

@@ -3,13 +3,13 @@ import 'package:news_app/model/category.dart';
 import 'package:news_app/ui/home/category_details/category_details.dart';
 import 'package:news_app/ui/home/category_fragment.dart';
 import 'package:news_app/ui/home/drawer/home_drawer.dart';
+import 'package:news_app/ui/home/search/search_screen.dart';
 import 'package:news_app/utils/app_colors.dart';
 
 // ignore: must_be_immutable
 class HomeScreen extends StatefulWidget {
   static const String routeName = 'home_screen';
-  HomeScreen({super.key});
-
+  HomeScreen({Key? key}) : super(key: key);
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -19,6 +19,10 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          actions: [ IconButton(onPressed: () {
+            Navigator.pushNamed(context, SearchScreen.routeName);
+            // showSearch(context: context, delegate: SearchNewsDelegate());
+          }, icon: const Icon(Icons.search))],
           title:
               Text( categorySelected == null?
                 'Home ' : categorySelected!.name! , style: Theme.of(context).textTheme.headlineLarge),
@@ -32,18 +36,17 @@ class _HomeScreenState extends State<HomeScreen> {
         body: categorySelected == null
             ? // stape: 7
             CategoryFragment(
-                onCklick: onCategoryCklick, // stape: 3,
+                onCklick: onCategoryCklick, 
               )
             : CategoryDetails(
-                category: categorySelected!, // stape: 13
+                category: categorySelected!, 
               ));
   }
 
-  Category? categorySelected; // stape: 5
+  Category? categorySelected; 
 
-  void onCategoryCklick(Category newCategorySelected) {   // stape: 4
-  
-    categorySelected = newCategorySelected; // stape: 6
+  void onCategoryCklick(Category newCategorySelected) {  
+    categorySelected = newCategorySelected; 
     setState(() {});
   }
 

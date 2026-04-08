@@ -14,7 +14,7 @@ class CustomSearchBar extends StatelessWidget {
         keyboardType: TextInputType.text,
         textInputAction: TextInputAction.search,
         onSubmitted: (value) {
-          context.read<SearchProvider>().getSearchedArticles();
+          context.read<SearchProvider>().searchArticles();
           // Navigator.pop(context);
 
           },

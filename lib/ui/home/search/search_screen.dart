@@ -11,61 +11,86 @@ class SearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(slivers: [
-        SliverAppBar(
-          forceMaterialTransparency: true,
-          toolbarHeight: 80,
-          automaticallyImplyLeading: false,
-          pinned: true,
-          title: Container(
-              decoration: BoxDecoration(
-                color: Theme.of(context).primaryColor,
-                borderRadius: BorderRadius.circular(16),
-                boxShadow: [
-                  BoxShadow(
-                    color: Theme.of(context).indicatorColor,
-                    blurRadius: 8,
-                    offset: const Offset(0, 2),
+      body: CustomScrollView(
+          physics: const BouncingScrollPhysics(),
+          controller: context.read<SearchProvider>().scrollController,
+          slivers: [
+            SliverAppBar(
+              forceMaterialTransparency: true,
+              toolbarHeight: 80,
+              automaticallyImplyLeading: false,
+              pinned: true,
+              title: Container(
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColor,
+                    borderRadius: BorderRadius.circular(16),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Theme.of(context).indicatorColor,
+                        blurRadius: 8,
+                        offset: const Offset(0, 2),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-              child: CustomSearchBar()),
-          centerTitle: true,
-        ),
-        Consumer<SearchProvider>(builder: (context, searchProvider, child) {
-          if (searchProvider.isLoading) {
-            return const SliverFillRemaining(
-              child: Center(
-                child: CircularProgressIndicator(),
-              ),
-            );
-          }
-          if (searchProvider.errorMessage != null) {
-            return SliverFillRemaining(
-              child: Center(
-                child: Text(searchProvider.errorMessage!),
-              ),
-            );
-          }
-          if (searchProvider.searchedArticles.isEmpty) {
-            return const SliverFillRemaining(
-              child: Center(
-                child: Text("No results found"),
-              ),
-            );
-          }
-
-          return SliverList.separated(
-            itemCount: searchProvider.searchedArticles.length,
-            separatorBuilder: (context, index) => const SizedBox(
-              height: 16,
+                  child: CustomSearchBar()),
+              centerTitle: true,
             ),
-            itemBuilder: (context, index) {
-              return NewsItem(articles: searchProvider.searchedArticles[index]);
-            },
-          );
-        })
-      ]),
+            Consumer<SearchProvider>(builder: (context, searchProvider, child) {
+              if (searchProvider.isLoading) {
+                return const SliverFillRemaining(
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                );
+              }
+              if (searchProvider.errorMessage != null) {
+                return SliverFillRemaining(
+                  child: Center(
+                    child: Text(searchProvider.errorMessage!),
+                  ),
+                );
+              }
+              if (searchProvider.newArticles.isEmpty) {
+                return const SliverFillRemaining(
+                  child: Center(
+                    child: Text("No results found"),
+                  ),
+                );
+              }
+
+              return SliverList.separated(
+                // stape : 2 ==> {  +   (searchProvider.pagaintionLoading ? 1 : 0) }
+
+                itemCount: searchProvider.newArticles.length +
+                    (searchProvider.pagaintionLoading ? 1 : 0),
+                separatorBuilder: (context, index) => const SizedBox(
+                  height: 16,
+                ),
+                itemBuilder: (context, index) {
+                  // stape : 1  ==> 
+                  //  { if (index == searchProvider.newArticles.length &&
+                  //     searchProvider.pagaintionLoading) {
+                  //   return const Padding(
+                  //     padding: EdgeInsets.all(16.0),
+                  //     child: Center(
+                  //       child: CircularProgressIndicator(),
+                  //     ),
+                  //   );
+                  // } }
+                  if (index == searchProvider.newArticles.length &&
+                      searchProvider.pagaintionLoading) {
+                    return const Padding(
+                      padding: EdgeInsets.all(16.0),
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    );
+                  }
+                  return NewsItem(articles: searchProvider.newArticles[index]);
+                },
+              );
+            })
+          ]),
     );
   }
 }

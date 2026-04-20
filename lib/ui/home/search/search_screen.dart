@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/provider/search_provider.dart';
-import 'package:news_app/ui/home/news/news_item.dart';
-import 'package:news_app/ui/home/widget/custom_search_bar.dart';
+import 'package:news_app/ui/home/news/widget/news_item_widget.dart';
+import 'package:news_app/ui/home/search/widget/custom_search_bar.dart';
 import 'package:provider/provider.dart';
 
 class SearchScreen extends StatelessWidget {
@@ -86,7 +86,7 @@ class SearchScreen extends StatelessWidget {
                       ),
                     );
                   }
-                  return NewsItem(articles: searchProvider.newArticles[index]);
+                  return NewsItemWidget(articles: searchProvider.newArticles[index]);
                 },
               );
             })

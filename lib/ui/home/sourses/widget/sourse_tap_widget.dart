@@ -1,7 +1,8 @@
+
 import 'package:flutter/material.dart';
 import 'package:news_app/model/sourse_response.dart';
-import 'package:news_app/ui/home/widget/news_widget.dart';
-import 'package:news_app/ui/home/widget/source_tab_name_widget.dart';
+import 'package:news_app/ui/home/news/articles_view.dart';
+import 'package:news_app/ui/home/sourses/widget/source_tab_name_widget.dart';
 
 // ignore: must_be_immutable
 class SourseTapWidget extends StatefulWidget {
@@ -47,7 +48,7 @@ class _SourseTapWidgetState extends State<SourseTapWidget> {
             ),
             Expanded(
                 child:
-                    NewsWidget(source: widget.sourceList[widget.selectedIndex]))
+                    ArticlesView(source: widget.sourceList[widget.selectedIndex]))
           ],
         ));
   }

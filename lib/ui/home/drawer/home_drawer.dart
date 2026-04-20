@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/ui/home/widget/bottom_sheet_widget.dart';
-import 'package:news_app/ui/home/widget/drawer_item_widget.dart';
+import 'package:news_app/ui/home/drawer/widget/drawer_item_widget.dart';
 import 'package:news_app/utils/app_colors.dart';
 import 'package:news_app/utils/app_styles.dart';
 import 'package:news_app/utils/asses_managment.dart';

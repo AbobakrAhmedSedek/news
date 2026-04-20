@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/model/news_response.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:news_app/ui/home/widget/model_bottom_sheet_body_widget.dart';
+import 'package:news_app/ui/home/news/widget/model_bottom_sheet_body_widget.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
-class NewsItem extends StatelessWidget {
+class NewsItemWidget extends StatelessWidget {
   final Articles articles;
-  const NewsItem({super.key, required this.articles});
+  const NewsItemWidget({super.key, required this.articles});
 
   @override
   Widget build(BuildContext context) {

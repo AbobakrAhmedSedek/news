@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/model/category.dart';
-import 'package:news_app/ui/home/category_details/category_details.dart';
 import 'package:news_app/ui/home/category_fragment.dart';
 import 'package:news_app/ui/home/drawer/home_drawer.dart';
 import 'package:news_app/ui/home/search/search_screen.dart';
+import 'package:news_app/ui/home/sourses/sourse_view.dart';
 import 'package:news_app/utils/app_colors.dart';
 
 // ignore: must_be_immutable
@@ -38,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
             CategoryFragment(
                 onCklick: onCategoryCklick, 
               )
-            : CategoryDetails(
+            : SourseView(
                 category: categorySelected!, 
               ));
   }
